@@ -1,0 +1,10 @@
+{% include 'header.html' %}
+
+<div class="container" role="main">
+    <div class="page-header">
+        <p>Jag heter {{ name }} med akronym {{ akronym }}.</p>
+        <img src="{{ url_for('static',filename='img/123.jpg') }}" width="256">
+    </div>
+</div>
+
+{% include 'footer.html' %}

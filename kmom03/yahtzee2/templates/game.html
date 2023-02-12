@@ -1,0 +1,40 @@
+{% include 'header.html' %}
+
+<div class="container" role="main">
+    <div class="page-header">
+        <h1>Yahtzee2</h1>
+    </div>
+    {% if last_dice %}
+    <div><p>Last hand:</p>
+        <ul>
+            {% for dice in last_dice.dice %}
+            <li>{{ dice }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div><p>Current hand:</p>
+        <ul>
+            {% for dice in hand_obj.dice %}
+            <li>{{ dice }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <ul>
+        {% for item in my_e_list %}
+        <li><img src="{{ url_for('static',filename='img/'+ item +'.png') }}" width="100" alt="{{item}}"></li>
+        {% endfor %}
+    </ul>
+
+    <form action="/check-game" method="post">
+        {% for rule in rules %}
+        <input type="radio" id="{{ rule.name }}" name="rule" value="{{ rule.name }}">
+        <label for="{{ rule.name }}">{{ rule.name }} ({{ rule.points(hand_obj) }})</label>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+    <p>Total Score: {{ session.get('total_score', 0) }}</p>
+</div>
+{% include 'footer.html' %}

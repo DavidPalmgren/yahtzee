@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+"""
+Contains the hand class.
+"""
+
+import random
+
+class Hand:
+    """This is the hand class"""
+
+    def __init__(self, dice_values = None):
+        """_hand init shit_"""
+        self.dice = []
+        if dice_values is None:
+            for x in range(5):
+                self.dice.append(random.randint(1, 6))
+        else:
+            self.dice = dice_values
+
+    def roll(self, indexes = None):
+        """
+        Rolls the die at index position taking from indexes:list n stuff.
+        """
+        if indexes is None:
+            self.dice = []
+            for x in range(5):
+                self.dice[x] = (random.randint(1, 6))
+            #print(self.dice)
+        else:
+            for x in indexes:
+                self.dice[x] = random.randint(1, 6)
+
+    def __str__(self):
+        return str(self.dice).strip("[]")
+
+
+
+
+        @app.route("/")
+def main():
+    """ Main route """
+    my_dices = Hand().dice
+    my_e_list = []
+    for dice in my_dices:
+        my_e_list.append(Die.get_name(dice, dice))
+    return render_template("index.html", dices=my_dices, list=my_e_list)
+
+
+    {% include 'header.html' %}
+
+<div class="container" role="main">
+    <div class="page-header">
+        <h1>Stiligt! En fungerande applikation.</h1>
+        <h3>Nu inkluderas headern och footern med hjälp av Jinja2</h3>
+        
+    </div>
+    <ul>
+        {% for dice in dices %}
+        <li>{{ dice }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for item in list %}
+        <li><img src="{{ url_for('static',filename='img/'+ item +'.png') }}" width="100" alt="{{item}}"></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% include 'footer.html' %}

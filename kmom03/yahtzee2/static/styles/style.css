@@ -1,0 +1,9 @@
+body {
+    padding-top: 4em;
+    padding-bottom: 2em;
+}
+
+.die {
+    width: 100px;
+    height: 100px;
+}
